@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://c06wmco8ui21d" path="res://player/player.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://2bkx7a6mdt1i" path="res://player/player.gd" id="1_rkbax"]
+[ext_resource type="Texture2D" uid="uid://cf2gyjc320swg" path="res://shadows/medium_shadow.png" id="3_g1dw6"]
 
 [sub_resource type="Animation" id="Animation_g1dw6"]
-length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -451,7 +451,6 @@ transitions = ["Start", "MoveState", SubResource("AnimationNodeStateMachineTrans
 graph_offset = Vector2(150.95203, 0)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_e7oew"]
-graph_offset = Vector2(39.33321, 13.999888)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_tqiix")
 nodes/StateMachine/position = Vector2(53.333332, 93.333336)
 node_connections = [&"output", 0, &"StateMachine"]
@@ -461,6 +460,7 @@ motion_mode = 1
 script = ExtResource("1_rkbax")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=15220551]
+position = Vector2(1, -9)
 texture = ExtResource("1_oul6g")
 hframes = 60
 frame = 21
@@ -482,4 +482,10 @@ process_callback = 0
 position_smoothing_enabled = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1509815845]
+position = Vector2(0, -9)
 polygon = PackedVector2Array(0, 12, -4, 5, 0, -1, 4, 5)
+
+[node name="ShadowSprite2D" type="Sprite2D" parent="." unique_id=28100906]
+show_behind_parent = true
+position = Vector2(0, 1)
+texture = ExtResource("3_g1dw6")
