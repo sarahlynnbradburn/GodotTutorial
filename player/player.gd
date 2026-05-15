@@ -38,11 +38,12 @@ func move_state(delta: float) -> void:
 		move_and_slide()
 		
 func roll_state(delta: float) -> void:
-	velocity = last_input_vector * ROLL_SPEED
+	velocity = last_input_vector.normalized() * ROLL_SPEED
 	move_and_slide()
 	
 	
 func update_blend_positions(direction_vector: Vector2) -> void:
+	#Calling functions will go down the tree 
 	animation_tree.set("parameters/StateMachine/MoveState/RunState/blend_position", direction_vector)
 	animation_tree.set("parameters/StateMachine/MoveState/Standstate/blend_position", direction_vector)
 	animation_tree.set("parameters/StateMachine/AttackState/blend_position", direction_vector)

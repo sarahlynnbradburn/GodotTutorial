@@ -34,6 +34,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [36, 37, 38, 39]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(7, -6, 18, -6, 19, -5, 19, -4, 18, -3, 7, -3), PackedVector2Array(-3, 8, 8, 8, 13, 6, 16, 3, 16, 10, 10, 17, 3, 20, -3, 20), PackedVector2Array(-9, 2, -19, 7, -15, 14, -8, 19, 1, 21, 9, 18, 13, 14, 16, 9, 17, 4, 7, 11, -1, 10, -5, 7), PackedVector2Array(-10, -6, -20, -6, -21, -3, -19, 3, -15, 6, -16, 1, -14, -2, -12, -3, -9, -3), PackedVector2Array()]
+}
 
 [sub_resource type="Animation" id="Animation_yllr7"]
 resource_name = "attack_left"
@@ -441,7 +453,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tqiix"]
 states/AttackState/node = SubResource("AnimationNodeBlendSpace2D_c35mf")
-states/AttackState/position = Vector2(377.6187, 198)
+states/AttackState/position = Vector2(377.6187, 198.66667)
 states/MoveState/node = SubResource("AnimationNodeStateMachine_wodsf")
 states/MoveState/position = Vector2(377.6187, 80)
 states/RollState/node = SubResource("AnimationNodeBlendSpace2D_s7qer")
@@ -450,10 +462,15 @@ states/Start/position = Vector2(205.33333, 80)
 transitions = ["Start", "MoveState", SubResource("AnimationNodeStateMachineTransition_32hag"), "MoveState", "AttackState", SubResource("AnimationNodeStateMachineTransition_rkbax"), "AttackState", "MoveState", SubResource("AnimationNodeStateMachineTransition_g1dw6"), "RollState", "MoveState", SubResource("AnimationNodeStateMachineTransition_g4c7l"), "MoveState", "RollState", SubResource("AnimationNodeStateMachineTransition_knn7v")]
 graph_offset = Vector2(150.95203, 0)
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_g1dw6"]
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_e7oew"]
+nodes/output/position = Vector2(520, 106.666664)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_tqiix")
 nodes/StateMachine/position = Vector2(53.333332, 93.333336)
-node_connections = [&"output", 0, &"StateMachine"]
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_g1dw6")
+nodes/TimeScale/position = Vector2(333.33334, 106.666664)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"StateMachine"]
 
 [node name="Player" type="CharacterBody2D" unique_id=465753576]
 motion_mode = 1
@@ -469,6 +486,7 @@ frame = 21
 libraries/ = SubResource("AnimationLibrary_g1dw6")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1195507596]
+callback_mode_discrete = 1
 tree_root = SubResource("AnimationNodeBlendTree_e7oew")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
@@ -476,6 +494,7 @@ parameters/StateMachine/AttackState/blend_position = Vector2(-0.009772003, -0.26
 parameters/StateMachine/MoveState/RunState/blend_position = Vector2(-0.18739057, -0.28888893)
 parameters/StateMachine/MoveState/Standstate/blend_position = Vector2(0.89581394, 0.009523869)
 parameters/StateMachine/RollState/blend_position = Vector2(0.9001751, 0.015872955)
+parameters/TimeScale/scale = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2083031065]
 process_callback = 0
@@ -489,3 +508,7 @@ polygon = PackedVector2Array(0, 12, -4, 5, 0, -1, 4, 5)
 show_behind_parent = true
 position = Vector2(0, 1)
 texture = ExtResource("3_g1dw6")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=349313054]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=1416919291]
