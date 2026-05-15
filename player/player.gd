@@ -28,14 +28,15 @@ func move_state(delta: float) -> void:
 				
 		update_blend_positions(direction_vector)
 				
-		if Input.is_action_just_pressed("attack"):
-			playback.travel("AttackState")
+	if Input.is_action_just_pressed("attack"):
+		print("attackpressed")
+		playback.travel("AttackState")
 			
-		if Input.is_action_just_pressed("roll"):
-			playback.travel("RollState")
+	if Input.is_action_just_pressed("roll"):
+		playback.travel("RollState")
 			
-		velocity = input_vector * SPEED
-		move_and_slide()
+	velocity = input_vector * SPEED
+	move_and_slide()
 		
 func roll_state(delta: float) -> void:
 	velocity = last_input_vector.normalized() * ROLL_SPEED

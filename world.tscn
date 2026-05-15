@@ -759,7 +759,7 @@ tile_map_data = PackedByteArray("AAD+/wAAAAAFAAEAAAD//wAAAAABAAIAAAAAAAAAAAABAAI
 tile_set = SubResource("TileSet_gbfbk")
 
 [node name="Player" parent="." unique_id=465753576 instance=ExtResource("1_f3sb7")]
-position = Vector2(166, 94)
+position = Vector2(169, 95)
 
 [node name="Bush" parent="." unique_id=1923890114 instance=ExtResource("3_aqk2v")]
 position = Vector2(100, 43)
