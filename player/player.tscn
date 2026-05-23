@@ -5,6 +5,18 @@
 [ext_resource type="Texture2D" uid="uid://cf2gyjc320swg" path="res://shadows/medium_shadow.png" id="3_g1dw6"]
 
 [sub_resource type="Animation" id="Animation_g1dw6"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/CollisionPolygon2D:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array()]
+}
 
 [sub_resource type="Animation" id="Animation_ebec5"]
 resource_name = "attack_down"
@@ -29,10 +41,10 @@ tracks/1/path = NodePath("Area2D/CollisionPolygon2D:polygon")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [PackedVector2Array(7, -6, 18, -6, 19, -5, 19, -4, 18, -3, 7, -3), PackedVector2Array(-3, 8, 8, 8, 13, 6, 16, 3, 16, 10, 10, 17, 3, 20, -3, 20), PackedVector2Array(-9, 2, -19, 7, -15, 14, -8, 19, 1, 21, 9, 18, 13, 14, 16, 9, 17, 4, 7, 11, -1, 10, -5, 7), PackedVector2Array(-10, -6, -20, -6, -21, -3, -19, 3, -15, 6, -16, 1, -14, -2, -12, -3, -9, -3)]
+"values": [PackedVector2Array(7, -6, 18, -6, 19, -5, 19, -4, 18, -3, 7, -3), PackedVector2Array(-3, 8, 8, 8, 13, 6, 16, 3, 16, 10, 10, 17, 3, 20, -3, 20), PackedVector2Array(-9, 2, -19, 7, -15, 14, -8, 19, 1, 21, 9, 18, 13, 14, 16, 9, 17, 4, 7, 11, -1, 10, -5, 7), PackedVector2Array(-10, -6, -20, -6, -21, -3, -19, 3, -15, 6, -16, 1, -14, -2, -12, -3, -9, -3), PackedVector2Array()]
 }
 
 [sub_resource type="Animation" id="Animation_yllr7"]
@@ -50,6 +62,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [32, 33, 34, 35]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(-1.3499994, -19.362713, -0.5999994, -19.362713, 0.15000057, -18.549152, 0.15000057, -11.227119, -2.0999994, -11.227119, -2.0999994, -18.549152), PackedVector2Array(-20.099998, 0.16271174, -19.349998, -8.786442, -13.349999, -14.481357, -6.5999994, -16.108475, -1.3499994, -16.108475, -5.8499994, -12.8542385, -8.849999, -7.9728823, -8.849999, 0.16271174), PackedVector2Array(-7.3499994, 10.738983, -2.0999994, 1.7898304, -10.349999, -2.2779663, -12.599999, -7.9728823, -9.599999, -12.040679, -5.8499994, -15.294917, -14.849999, -13.667797, -19.349998, -7.1593227, -19.349998, 0.9762711, -15.599999, 6.6711864), PackedVector2Array(0.9000006, 1.7898304, 1.6500006, 10.738983, -2.0999994, 11.552543, -10.349999, 8.2983055, -2.8499994, 7.484746, -1.3499994, 5.044068, -1.3499994, 1.7898304), PackedVector2Array()]
 }
 
 [sub_resource type="Animation" id="Animation_2ieo8"]
@@ -333,7 +357,7 @@ blend_point_1/pos = Vector2(0, 1)
 blend_point_2/node = SubResource("AnimationNodeAnimation_tqiix")
 blend_point_2/pos = Vector2(0.90000004, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_e7oew")
-blend_point_3/pos = Vector2(0, -0.90000004)
+blend_point_3/pos = Vector2(0, -1)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rkbax"]
@@ -468,6 +492,7 @@ script = ExtResource("1_rkbax")
 position = Vector2(1, -9)
 texture = ExtResource("1_oul6g")
 hframes = 60
+frame = 35
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1149001252]
 libraries/ = SubResource("AnimationLibrary_g1dw6")
@@ -499,3 +524,5 @@ texture = ExtResource("3_g1dw6")
 [node name="Area2D" type="Area2D" parent="." unique_id=349313054]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=1416919291]
+position = Vector2(1.7999992, -2.1999998)
+scale = Vector2(1.3333333, 1.2291666)

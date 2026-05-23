@@ -8,6 +8,7 @@ var last_input_vector = Vector2.ZERO
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback = animation_tree.get("parameters/StateMachine/playback") as AnimationNodeStateMachinePlayback
+@onready var collision_polygon_2d: CollisionPolygon2D = $Area2D/CollisionPolygon2D
 
 func _physics_process(delta: float) -> void:
 	var state = playback.get_current_node()
