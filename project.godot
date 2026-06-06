@@ -28,6 +28,10 @@ window/vsync/vsync_mode=3
 
 project/assembly_name="GodotActionRPGTutorial"
 
+[global_group]
+
+player=""
+
 [input]
 
 move_up={

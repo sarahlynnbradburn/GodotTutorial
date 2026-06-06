@@ -1,4 +1,7 @@
-extends CharacterBody2D
+#Creating a "Player" type here creates a custom node
+#and allows you to instantiate type player 
+#(see bat enemy script)
+class_name Player extends CharacterBody2D
 
 const SPEED = 100.0
 const ROLL_SPEED = 125
