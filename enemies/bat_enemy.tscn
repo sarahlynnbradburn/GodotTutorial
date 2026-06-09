@@ -57,11 +57,11 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v72ps"]
 advance_mode = 2
-advance_expression = "is_player_in_range()"
+advance_expression = "can_see_player()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gvrg5"]
 advance_mode = 2
-advance_expression = "not is_player_in_range()"
+advance_expression = "not can_see_player()"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_m7u13"]
 states/Chase/node = SubResource("AnimationNodeAnimation_ww8v4")
@@ -72,12 +72,14 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(140.85477, 0)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_udr2s"]
-graph_offset = Vector2(-40.4987, 66.68946)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_m7u13")
 nodes/StateMachine/position = Vector2(40, 133.33333)
 node_connections = [&"output", 0, &"StateMachine"]
 
 [node name="BatEnemy" type="CharacterBody2D" unique_id=1078445466]
+collision_layer = 4
+collision_mask = 7
+motion_mode = 1
 script = ExtResource("1_5gx0a")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=594372817]
@@ -100,3 +102,6 @@ libraries/ = SubResource("AnimationLibrary_erta8")
 tree_root = SubResource("AnimationNodeBlendTree_udr2s")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1493569209]
+target_position = Vector2(8, 0)

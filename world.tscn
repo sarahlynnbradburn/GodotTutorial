@@ -845,3 +845,9 @@ tile_set = SubResource("TileSet_gbfbk")
 
 [node name="BatEnemy" parent="." unique_id=1078445466 instance=ExtResource("8_gbfbk")]
 position = Vector2(393, 53)
+
+[node name="BatEnemy2" parent="." unique_id=1435355025 instance=ExtResource("8_gbfbk")]
+position = Vector2(513, 162)
+
+[node name="BatEnemy3" parent="." unique_id=2015070381 instance=ExtResource("8_gbfbk")]
+position = Vector2(374, 28)
