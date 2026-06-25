@@ -22,6 +22,30 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:collision_layer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:collision_mask")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
 
 [sub_resource type="Animation" id="Animation_grp10"]
 resource_name = "fly"
@@ -41,14 +65,59 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4]
 }
 
+[sub_resource type="Animation" id="Animation_erta8"]
+resource_name = "hit"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:collision_layer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:collision_mask")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 7]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_erta8"]
 _data = {
 &"RESET": SubResource("Animation_5gx0a"),
-&"fly": SubResource("Animation_grp10")
+&"fly": SubResource("Animation_grp10"),
+&"hit": SubResource("Animation_erta8")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ww8v4"]
 animation = &"fly"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_grp10"]
+animation = &"hit"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_boacx"]
 animation = &"fly"
@@ -64,15 +133,22 @@ advance_expression = "can_see_player()"
 advance_mode = 2
 advance_expression = "not can_see_player()"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_erta8"]
+advance_mode = 2
+advance_expression = "velocity == Vector2(0, 0)"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_m7u13"]
-states/Chase/node = SubResource("AnimationNodeAnimation_ww8v4")
-states/Chase/position = Vector2(320.63254, 194)
-states/Idle/node = SubResource("AnimationNodeAnimation_boacx")
-states/Idle/position = Vector2(320.85477, 99.77778)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_f4281"), "Idle", "Chase", SubResource("AnimationNodeStateMachineTransition_v72ps"), "Chase", "Idle", SubResource("AnimationNodeStateMachineTransition_gvrg5")]
-graph_offset = Vector2(140.85477, 0)
+states/ChaseState/node = SubResource("AnimationNodeAnimation_ww8v4")
+states/ChaseState/position = Vector2(320.63254, 194)
+states/HitState/node = SubResource("AnimationNodeAnimation_grp10")
+states/HitState/position = Vector2(459.72546, 100.51852)
+states/IdleState/node = SubResource("AnimationNodeAnimation_boacx")
+states/IdleState/position = Vector2(320.85477, 99.77778)
+transitions = ["Start", "IdleState", SubResource("AnimationNodeStateMachineTransition_f4281"), "IdleState", "ChaseState", SubResource("AnimationNodeStateMachineTransition_v72ps"), "ChaseState", "IdleState", SubResource("AnimationNodeStateMachineTransition_gvrg5"), "HitState", "IdleState", SubResource("AnimationNodeStateMachineTransition_erta8")]
+graph_offset = Vector2(5.0588017, 0)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_udr2s"]
+graph_offset = Vector2(-156.84683, -55.483242)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_m7u13")
 nodes/StateMachine/position = Vector2(40, 133.33333)
 node_connections = [&"output", 0, &"StateMachine"]

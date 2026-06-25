@@ -12,6 +12,7 @@ var last_input_vector = Vector2.ZERO
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback = animation_tree.get("parameters/StateMachine/playback") as AnimationNodeStateMachinePlayback
 @onready var collision_polygon_2d: CollisionPolygon2D = $Area2D/CollisionPolygon2D
+@onready var hitbox: Hitbox = $Hitbox
 
 func _physics_process(delta: float) -> void:
 	var state = playback.get_current_node()
@@ -24,6 +25,7 @@ func move_state(delta: float) -> void:
 	input_vector = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 			
 	if input_vector != Vector2.ZERO:
+		hitbox.knockback_direction = input_vector.normalized()
 		last_input_vector = input_vector
 		#y-axis is counterintuative in godot (and most game engines)
 		#this lets us set up the animations intuatively in the blend 
