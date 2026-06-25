@@ -2,8 +2,15 @@
 
 [ext_resource type="Texture2D" uid="uid://c06wmco8ui21d" path="res://player/player.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://2bkx7a6mdt1i" path="res://player/player.gd" id="1_rkbax"]
+[ext_resource type="Script" uid="uid://4nm734vwg8c8" path="res://stats.gd" id="2_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://cf2gyjc320swg" path="res://shadows/medium_shadow.png" id="3_g1dw6"]
 [ext_resource type="Script" uid="uid://cmg14cyywcmdt" path="res://damage_boxes/hitbox.gd" id="4_yw30f"]
+
+[sub_resource type="Resource" id="Resource_g6k8r"]
+script = ExtResource("2_qjkh3")
+health = 4
+max_health = 4
+metadata/_custom_type_script = "uid://4nm734vwg8c8"
 
 [sub_resource type="Animation" id="Animation_g1dw6"]
 tracks/0/type = "value"
@@ -514,6 +521,7 @@ collision_layer = 2
 collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_rkbax")
+stats = SubResource("Resource_g6k8r")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=15220551]
 position = Vector2(1, -9)

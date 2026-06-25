@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var range: = 104
 const SPEED = 30
 const FRICTION = 500
+@export var stats: Stats
 
 #Control on drop creates the onready
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -15,7 +16,11 @@ const FRICTION = 500
 @export var player: Player
 
 func _ready() -> void:
+	#stats.duplicate gives each unique bat it's own stats onject, 
+	#so that hits don't effect every bat 
+	stats = stats.duplicate()
 	hurtbox.hurt.connect(take_hit.call_deferred)
+	stats.no_health.connect(queue_free)
 
 func _physics_process(delta: float) -> void: 
 	var state = playback.get_current_node()
@@ -37,6 +42,7 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 
 func take_hit(other_hitbox: Hitbox) -> void:
+	stats.health -= other_hitbox.damage
 	velocity = other_hitbox.knockback_direction * other_hitbox.knockback_amount
 	playback.start("HitState")
 	print("changed to hit state")
