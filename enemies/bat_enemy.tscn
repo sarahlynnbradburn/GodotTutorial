@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c0sbfe12dpvfo" path="res://shadows/small_shadow.png" id="2_e7gs6"]
 [ext_resource type="Script" uid="uid://4nm734vwg8c8" path="res://stats.gd" id="2_erta8"]
 [ext_resource type="Script" uid="uid://cxca030savy" path="res://damage_boxes/hurtbox.gd" id="4_grp10"]
+[ext_resource type="Script" uid="uid://cmg14cyywcmdt" path="res://damage_boxes/hitbox.gd" id="6_ww8v4"]
 
 [sub_resource type="Resource" id="Resource_ww8v4"]
 script = ExtResource("2_erta8")
@@ -51,7 +52,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [7]
+"values": [5]
 }
 
 [sub_resource type="Animation" id="Animation_grp10"]
@@ -110,7 +111,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [3, 7]
+"values": [3, 5]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_erta8"]
@@ -155,7 +156,6 @@ transitions = ["Start", "IdleState", SubResource("AnimationNodeStateMachineTrans
 graph_offset = Vector2(5.0588017, 0)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_udr2s"]
-graph_offset = Vector2(-156.84683, -55.483242)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_m7u13")
 nodes/StateMachine/position = Vector2(40, 133.33333)
 node_connections = [&"output", 0, &"StateMachine"]
@@ -163,9 +163,12 @@ node_connections = [&"output", 0, &"StateMachine"]
 [sub_resource type="CircleShape2D" id="CircleShape2D_5gx0a"]
 radius = 7.071068
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_boacx"]
+radius = 4.0
+
 [node name="BatEnemy" type="CharacterBody2D" unique_id=1078445466]
 collision_layer = 4
-collision_mask = 7
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_5gx0a")
 stats = SubResource("Resource_ww8v4")
@@ -203,3 +206,14 @@ metadata/_custom_type_script = "uid://cxca030savy"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1820991920]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_5gx0a")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1367137414]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("6_ww8v4")
+metadata/_custom_type_script = "uid://cmg14cyywcmdt"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1164090610]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_boacx")
+debug_color = Color(0.9926174, 0, 0.25595605, 0.41960785)

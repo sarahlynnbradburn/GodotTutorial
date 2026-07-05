@@ -9,12 +9,29 @@ const ROLL_SPEED = 125
 @export var stats: Stats
 
 var input_vector = Vector2.ZERO
-var last_input_vector = Vector2.ZERO
+var last_input_vector = Vector2.RIGHT
+
+@onready var blink_animation_player: AnimationPlayer = $BlinkAnimationPlayer
+@onready var hurtbox: Hurtbox = $Hurtbox
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback = animation_tree.get("parameters/StateMachine/playback") as AnimationNodeStateMachinePlayback
 @onready var collision_polygon_2d: CollisionPolygon2D = $Area2D/CollisionPolygon2D
 @onready var hitbox: Hitbox = $Hitbox
+
+func _ready() -> void:
+	hurtbox.hurt.connect(take_hit.call_deferred)
+	stats.no_health.connect(die)
+
+func die() -> void:
+	hide()
+	remove_from_group("player")
+	process_mode = Node.PROCESS_MODE_DISABLED
+	
+	
+func take_hit(other_hitbox: Hitbox) -> void: 
+	stats.health -= other_hitbox.damage 
+	blink_animation_player.play("blink")
 
 func _physics_process(delta: float) -> void:
 	var state = playback.get_current_node()
